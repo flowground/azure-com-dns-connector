@@ -1,0 +1,312 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "zoneName": {
+            "required": true,
+            "type": "string"
+        },
+        "relativeRecordSetName": {
+            "required": true,
+            "type": "string"
+        },
+        "recordType": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "A",
+                "AAAA",
+                "CAA",
+                "CNAME",
+                "MX",
+                "NS",
+                "PTR",
+                "SOA",
+                "SRV",
+                "TXT"
+            ]
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Describes a DNS record set (a collection of DNS records with the same name and type).",
+            "properties": {
+                "etag": {
+                    "description": "The etag of the record set.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "The ID of the record set.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the record set.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "The properties of the record set.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "AAAARecords": {
+                            "description": "The list of AAAA records in the record set.",
+                            "items": {
+                                "description": "An AAAA record.",
+                                "properties": {
+                                    "ipv6Address": {
+                                        "description": "The IPv6 address of this AAAA record.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "x-ms-client-name": "AaaaRecords"
+                        },
+                        "ARecords": {
+                            "description": "The list of A records in the record set.",
+                            "items": {
+                                "description": "An A record.",
+                                "properties": {
+                                    "ipv4Address": {
+                                        "description": "The IPv4 address of this A record.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "CNAMERecord": {
+                            "description": "The CNAME record in the  record set.",
+                            "x-ms-client-name": "CnameRecord",
+                            "properties": {
+                                "cname": {
+                                    "description": "The canonical name for this CNAME record.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "MXRecords": {
+                            "description": "The list of MX records in the record set.",
+                            "items": {
+                                "description": "An MX record.",
+                                "properties": {
+                                    "exchange": {
+                                        "description": "The domain name of the mail host for this MX record.",
+                                        "type": "string"
+                                    },
+                                    "preference": {
+                                        "description": "The preference value for this MX record.",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "x-ms-client-name": "MxRecords"
+                        },
+                        "NSRecords": {
+                            "description": "The list of NS records in the record set.",
+                            "items": {
+                                "description": "An NS record.",
+                                "properties": {
+                                    "nsdname": {
+                                        "description": "The name server name for this NS record.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "x-ms-client-name": "NsRecords"
+                        },
+                        "PTRRecords": {
+                            "description": "The list of PTR records in the record set.",
+                            "items": {
+                                "description": "A PTR record.",
+                                "properties": {
+                                    "ptrdname": {
+                                        "description": "The PTR target domain name for this PTR record.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "x-ms-client-name": "PtrRecords"
+                        },
+                        "SOARecord": {
+                            "description": "The SOA record in the record set.",
+                            "x-ms-client-name": "SoaRecord",
+                            "properties": {
+                                "email": {
+                                    "description": "The email contact for this SOA record.",
+                                    "type": "string"
+                                },
+                                "expireTime": {
+                                    "description": "The expire time for this SOA record.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "host": {
+                                    "description": "The domain name of the authoritative name server for this SOA record.",
+                                    "type": "string"
+                                },
+                                "minimumTTL": {
+                                    "description": "The minimum value for this SOA record. By convention this is used to determine the negative caching duration.",
+                                    "format": "int64",
+                                    "type": "integer",
+                                    "x-ms-client-name": "minimumTtl"
+                                },
+                                "refreshTime": {
+                                    "description": "The refresh value for this SOA record.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "retryTime": {
+                                    "description": "The retry time for this SOA record.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "serialNumber": {
+                                    "description": "The serial number for this SOA record.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "SRVRecords": {
+                            "description": "The list of SRV records in the record set.",
+                            "items": {
+                                "description": "An SRV record.",
+                                "properties": {
+                                    "port": {
+                                        "description": "The port value for this SRV record.",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "priority": {
+                                        "description": "The priority value for this SRV record.",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "target": {
+                                        "description": "The target domain name for this SRV record.",
+                                        "type": "string"
+                                    },
+                                    "weight": {
+                                        "description": "The weight value for this SRV record.",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "x-ms-client-name": "SrvRecords"
+                        },
+                        "TTL": {
+                            "description": "The TTL (time-to-live) of the records in the record set.",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "TXTRecords": {
+                            "description": "The list of TXT records in the record set.",
+                            "items": {
+                                "description": "A TXT record.",
+                                "properties": {
+                                    "value": {
+                                        "description": "The text value of this TXT record.",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "x-ms-client-name": "TxtRecords"
+                        },
+                        "caaRecords": {
+                            "description": "The list of CAA records in the record set.",
+                            "items": {
+                                "description": "A CAA record.",
+                                "properties": {
+                                    "flags": {
+                                        "description": "The flags for this CAA record as an integer between 0 and 255.",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "tag": {
+                                        "description": "The tag for this CAA record.",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "The value for this CAA record.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "x-ms-client-name": "CaaRecords"
+                        },
+                        "fqdn": {
+                            "description": "Fully qualified domain name of the record set.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "metadata": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "The metadata attached to the record set.",
+                            "type": "object"
+                        },
+                        "provisioningState": {
+                            "description": "provisioning State of the record set.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "targetResource": {
+                            "description": "A reference to an azure resource from where the dns resource value is taken.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource Id.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": {
+                    "description": "The type of the record set.",
+                    "readOnly": true,
+                    "type": "string"
+                }
+            },
+            "x-ms-azure-resource": true,
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,148 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "zoneName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of an Azure Resource Manager resource",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource location.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "location"
+                    ],
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "Describes a DNS zone.",
+            "properties": {
+                "etag": {
+                    "description": "The etag of the zone.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "The properties of the zone.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "maxNumberOfRecordSets": {
+                            "description": "The maximum number of record sets that can be created in this DNS zone.  This is a read-only property and any attempt to set this value will be ignored.",
+                            "format": "int64",
+                            "readOnly": true,
+                            "type": "integer"
+                        },
+                        "nameServers": {
+                            "description": "The name servers for this DNS zone. This is a read-only property and any attempt to set this value will be ignored.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "numberOfRecordSets": {
+                            "description": "The current number of record sets in this DNS zone.  This is a read-only property and any attempt to set this value will be ignored.",
+                            "format": "int64",
+                            "readOnly": true,
+                            "type": "integer"
+                        },
+                        "registrationVirtualNetworks": {
+                            "description": "A list of references to virtual networks that register hostnames in this DNS zone. This is a only when ZoneType is Private.",
+                            "items": {
+                                "description": "A reference to a another resource",
+                                "properties": {
+                                    "id": {
+                                        "description": "Resource Id.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "resolutionVirtualNetworks": {
+                            "description": "A list of references to virtual networks that resolve records in this DNS zone. This is a only when ZoneType is Private.",
+                            "items": {
+                                "description": "A reference to a another resource",
+                                "properties": {
+                                    "id": {
+                                        "description": "Resource Id.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "zoneType": {
+                            "default": "Public",
+                            "description": "The type of this DNS zone (Public or Private).",
+                            "enum": [
+                                "Public",
+                                "Private"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "ZoneType"
+                            }
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "If_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "If_None_Match": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

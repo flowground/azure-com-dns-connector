@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the properties of the Dns Resource Reference Request.",
+            "properties": {
+                "properties": {
+                    "description": "The properties of the Resource Reference Request.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "targetResources": {
+                            "description": "A list of references to azure resources for which referencing dns records need to be queried.",
+                            "items": {
+                                "description": "A reference to a another resource",
+                                "properties": {
+                                    "id": {
+                                        "description": "Resource Id.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
